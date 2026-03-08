@@ -1,0 +1,427 @@
+:root {
+  --pozadina: #F5F7FA;
+  --wrapper_pozadina: #FAFAFA;
+  --pitanja_pozadina: rgba(37, 100, 235, 0.503);
+    --pitanja_pozadina_dark: linear-gradient(
+    135deg,
+    rgba(20, 55, 160, 0.75) 0%,
+    rgba(10, 30, 110, 0.95) 100%
+  );
+  --gradient_pozadina:linear-gradient(
+        135deg,
+        rgba(37, 100, 235, 0.55) 0%,
+        rgba(20, 60, 180, 0.85) 100%
+    );
+
+  --pitanja_pozadina_hover: rgba(20, 60, 180, 0.85);
+  --tekst_glavni: #1F2933;
+  --tekst_obican: #374151;
+  --tekst_muted: #6B7280;
+  --tekst_disabled: #9CA3AF;
+  --ivica: #E5E7EB;
+  --ivica_focus: #1F2933;
+  --zuta: #FACC15;
+}
+
+body {
+    font-family: 'Baloo 2', sans-serif;
+    justify-content: center;
+    align-items: center;
+    color: var(--tekst_glavni);
+    transition: 0.5s;
+    background-image: url(../img/quiz-seamless-pattern-doodle-style-vector-illustration-back-school-background_501826-310.avif);
+    background-size: auto;
+    background-attachment: fixed;
+    background-repeat: repeat;
+}
+
+::selection {
+  color: var(--wrapper_pozadina);             
+  background-color: var(--pitanja_pozadina_hover); 
+}
+
+#wrapper {
+    position: relative;
+    margin: 5vh auto;
+    max-width: 1000px;
+    height: 90vh;
+    text-align: center;
+    border: 2px solid var(--ivica);
+    border-radius: 25px;
+    background-color: var(--wrapper_pozadina);
+    transition: 0.2s;
+    font-size: 1.5em;
+    overflow: hidden;
+    animation: load 1s 1;
+}
+
+#wrapper:hover{
+    border: 2px solid var(--ivica_focus);
+}
+
+header{
+    margin: auto;
+    width: 500px;
+    border-bottom: 1px solid var(--ivica_focus);
+}
+
+
+
+header a, h1{
+    color: var(--tekst_glavni);
+    transition: 0.2s;
+    transform: scale(1);
+}
+
+header h1:hover{
+    animation: wiggle 1s 1;
+    cursor: pointer;
+    
+}
+
+#unesi_username{
+    color: var(--tekst_muted);
+    width: 300px;
+    height: 0px;
+    margin: auto;
+}
+
+#togglePitanja{
+    cursor: pointer;
+    transition: 0.1s;
+    height: 0px;
+    padding: 0 320px 0 0;
+    margin: 0;
+}
+
+#togglePitanja:active{
+    font-weight: bold;
+}
+
+section{
+    margin-bottom: 50px;
+}
+
+#setPitanja{
+    margin:auto;
+    margin-top: 10vh;
+    width: 720px;
+    text-align: center;
+    height: 450px;
+    border: 2px solid var(--ivica);
+    border-radius: 25px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transform: scale(0.98);
+    transition: 0.5s ease-in-out;
+    background: var(--gradient_pozadina);
+}
+
+#nije_dodato{
+    margin: auto;
+    width: 500px;
+}
+
+#setPitanja:hover{
+    background: var(--pitanja_pozadina_dark);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.50);
+    transform: scale(1);
+    border: 2px solid var(--ivica_focus);
+
+}
+
+#setPitanja:hover *{
+    color: var(--ivica);
+}
+
+#timeline-container {
+    width: 500px;         
+    height: 10px;        
+    background-color: var(--ivica); 
+    margin: 50px auto;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#timeline {
+    width: 0;             
+    height: 100%;
+    background-color: var(--ivica_focus); 
+    transition: width 0.5s ease-in-out;
+}
+
+#setPitanja.show{
+    opacity: 1;
+    max-height: 450px;
+}
+
+.pitanja{
+    float: left;
+    width: 200px;
+    margin: auto;
+    padding: 20px;
+    height: 110px;
+    border-radius: 10px;
+    transform: scale(1);
+    transition: 0.2s;
+
+}
+
+.pitanja:hover{
+    display: flex;
+    transform: scale(1.2);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+a{
+    text-decoration: none;
+}   
+
+.pitanja a{
+    padding: 10px;
+    text-decoration: none;
+    transition: 0.2s;
+    cursor: pointer;
+    transform: scale(1);
+    transition: 0.2s;
+    width: 200px;
+    color: var(--tekst_glavni);
+    height: 110px;
+    
+}
+
+
+
+
+section #slicica {
+    display: block;
+    margin: 75px auto; 
+    max-width: 400px; 
+}
+
+button{
+    clear: left;
+    font-size: 1.5em;
+    background-color: var(--pitanja_pozadina);
+    font-weight: bold;
+    padding: 10px;
+    border: var(--ivica);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Baloo 2', sans-serif;
+    color:var(--tekst_obican);
+}
+
+button:hover, #username:hover{
+    border: var(--ivica_focus);
+    transform: scale(1.1);
+    background-color: var(--pitanja_pozadina_hover);
+}
+
+button:active{
+    transform: scale(0.9);
+}
+
+#vrati{
+    position: absolute;
+    bottom: 25px;   
+    left: 25px;     
+    font-size: 1em;
+    color: #111827;
+}
+
+#pitanja{
+    width: 720px;
+    text-align: center;
+    margin: auto;
+    min-height: 450px;
+    transform: scale(0.98);
+    transition: all 0.5s ease;
+}
+
+#pitanja input[type="radio"] {
+    display: none;
+    width: 200px;
+}
+
+.bold {
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.dugme_kviza{
+    margin: auto;
+    display: none;
+    font-size: 1em;
+}
+
+#bodovi{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 50px;
+    top:10px;
+    border: 2px solid var(--ivica_focus);
+    width: 150px;
+    height: 30px;
+    background-color: var(--pitanja_pozadina);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#igrac{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50px;
+    top:10px;
+    border: 2px solid var(--ivica_focus);
+    min-width: 150px;
+    height: 30px;
+    background-color: var(--pitanja_pozadina);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#dodatak_bodova{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 100px;
+    top:10px;
+    opacity: 0;
+    color: var(--zuta);
+}
+
+
+#username{
+    margin: auto;
+    display: block;
+    width: 260px;
+    height: 60px;
+    padding: 20px;
+    border: var(--ivica);
+    font-size: 1.3em;
+    background-color: var(--pitanja_pozadina);
+    color: var(--tekst_glavni);
+    font-weight: bold;
+    font-family: 'Baloo 2', sans-serif;;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: 0.2s;
+
+}
+
+#pocni_kviz{
+    width: 300px;
+    height: 100px;
+
+}
+
+.odgovori{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 26px;
+    margin-top: 50px;
+}
+
+.klikabilno{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 150px;
+    margin: 0;
+    border: 2px solid var(--ivica);
+    background-color: var(--pitanja_pozadina);
+    border-radius: 20px;
+    transition: 0.2s;
+    font-size: 1;
+}
+
+.klikabilno:hover{
+    background-color: var(--pitanja_pozadina_hover);
+    border: 2px solid var(--ivica_focus);
+    transform: scale(1.1);
+}
+
+input[type="radio"]:checked + .klikabilno{
+    background-color: var(--pitanja_pozadina_hover);
+    border: 2px solid var(--ivica_focus);
+    transform: scale(1.05);
+}
+
+
+footer{
+    position: absolute;
+    bottom:5px;
+    margin:auto;
+    margin-top: 50px;
+    left:250px;
+    width: 500px;
+    font-size: 0.8em;
+    border-top:1px solid var(--ivica_focus);
+    color: var(--tekst_obican);
+    cursor: pointer;
+
+}
+
+footer p{
+    margin: auto;
+    padding: 20px;
+    width: 250px;
+    font-weight: 200;
+    transition: 0.2s;
+}
+
+footer p:hover{
+    font-weight: 600;
+}
+
+#modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    padding: 25px;
+    background: var(--pozadina);
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    display: block;
+    z-index: 101;
+    overflow: hidden;
+    
+}
+
+
+.zatvori{
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 100;
+}
+
+.overlay {
+	position: fixed;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	background-color: rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Kviz</title>
+</head>
+<body>
+
+    <div id="wrapper">
+        <section>
+            <header>
+                <h1><a href="index.html">KVIZ<sub>by GB</sub></a></h1>
+                
+            </header>
+            <p id="togglePitanja">╰┈➤Izaberi oblast</p>
+
+            <div id="setPitanja">
+                <h3 class="zatvori" onclick="zatvoriSet()">X</h3>
+                <div class="pitanja">
+                    <h3 onclick="oblast(this)"><a href="oblasti/istorija/istorija.html">Istorija</a></h3>
+                </div>
+                <div class="pitanja">
+                    <h3 onclick="oblast(this)"><a href="oblasti/geografija/geografija.html">Geografija</a></h3>
+                </div>
+                <div class="pitanja">
+                    <h3 onclick="oblast(this)"><a href="#">Hemija</a></h3>
+                </div>
+                <div class="pitanja">
+                    <h3 onclick="oblast(this)"><a href="#">Fizika</a></h3>
+                </div>
+                <div class="pitanja">
+                    <h3 onclick="oblast(this)"><a href="#">Knjizevnost</a></h3>
+                </div>
+                <div class="pitanja">
+                    <h3 onclick="oblast(this)"><a href="#">Biologija</a></h3>
+                </div>
+                <div class="pitanja">
+                    <h3 onclick="oblast(this)"><a href="#">Sociologija</a></h3>
+                </div>
+                <div class="pitanja">
+                    <h3 onclick="oblast(this)"><a href="#">Informatika</a></h3>
+                </div>
+                <div class="pitanja">
+                    <h3 onclick="oblast(this)"><a href="#">Engleski</a></h3>
+                </div>
+            </div>
+            <br>
+            <h3 id="nije_dodato"></h3>
+
+        </section>
+
+        <footer onclick="footer()">
+            <p>Kviz napravio Goran Basic</p>
+        </footer>
+
+        <div class="overlay"></div>
+        
+    </div>
+    <div id="modal">
+        <h2 id="zatvoriModal" onclick="zatvori()" class="zatvori">X</h2>
+        <h2>O autoru</h2>
+        <p>Zovem se Goran Basic imam 19 godina i student sam ITS – Visoke škole strukovnih studija za informacione tehnologije.</p>
+        <p>Ovaj kviz je nastao iz lične radoznalosti i želje da znanje stečeno na fakultetu primenim u praksi.</p>
+        <p>Kroz izradu projekta radio sam na logici pitanja, bodovanju i funkcionalnosti aplikacije, koristeći HTML, CSS i JavaScript.</p>
+        <p>Cilj mi je bio da kroz samostalni rad dodatno unapredim veštine web programiranja i testiram sopstvene ideje.</p>
+    </div>
+
+    
+    <script src="js/script.js"></script>
+    <script src="js/modal.js"></script>
+</body>
+</html>

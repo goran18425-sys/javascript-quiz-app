@@ -1,0 +1,105 @@
+@keyframes bodoviIzlaz {
+    0%{
+        opacity: 0;
+        transform: translateY(0);
+    }
+    25%{
+        opacity: 1;
+        transform: translateY(75px);
+    }
+    75%{
+        opacity: 1;
+        transform: translateY(75px);
+    }
+    100%{
+        opacity: 0;
+        transform: translateY(0);
+    }
+    
+}
+
+@keyframes load {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes shake {
+ 
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes tacanOdgovor {
+    0%{
+
+    }
+    50%{
+        box-shadow: 
+        0 0 15px #22C55E,    
+        0 0 30px #22C55E66,  
+        0 0 45px #22C55E44;
+    }
+    100%{
+        
+    }
+}
+
+@keyframes netacanOdgovor {
+    0%{
+
+    }
+    50%{
+        box-shadow: 
+        0 0 15px #EF4444,
+        0 0 30px #EF444466,
+        0 0 45px #EF444444;
+    }
+    100%{
+        
+    }
+    
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes modalLoad {
+  0%{
+    max-height: 0px;
+  }
+  100%{
+    max-height: 600px;
+  }
+}
