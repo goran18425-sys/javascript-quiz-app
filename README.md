@@ -48,6 +48,8 @@ Other categories are prepared but not yet implemented.
 
 Software engineering student at ITS
 
+## Screenshots
+
 <img width="1000" height="1000" alt="Screenshot from 2026-03-08 17-41-37" src="https://github.com/user-attachments/assets/05494e92-2048-43d3-ba07-194705b67bb5" />
 <img width="1000" height="1000" alt="Screenshot from 2026-03-08 17-42-09" src="https://github.com/user-attachments/assets/d9f7bcc7-11b3-4b77-9236-3da93d0911ae" />
 <img width="1000" height="1000" alt="Screenshot from 2026-03-08 17-42-20" src="https://github.com/user-attachments/assets/20541abf-1d93-4859-adf3-ff99ca8246d1" />
