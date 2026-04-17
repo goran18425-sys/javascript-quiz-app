@@ -156,6 +156,52 @@ section{
     max-height: 450px;
 }
 
+.kategorije-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.kategorija-kartica {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 15px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 140px;
+}
+
+.kategorija-kartica:hover {
+    transform: scale(1.08);
+    background-color: rgba(255, 255, 255, 0.25);
+    border-color: var(--zuta);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.kategorija-kartica .emoji {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.kategorija-kartica h3 {
+    margin: 5px 0;
+    font-size: 1.3em;
+    color: var(--wrapper_pozadina);
+}
+
+.kategorija-kartica .broj-pitanja {
+    margin: 5px 0 0 0;
+    font-size: 0.85em;
+    color: rgba(255, 255, 255, 0.8);
+}
+
 .pitanja{
     float: left;
     width: 200px;
