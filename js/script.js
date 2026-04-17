@@ -14,7 +14,14 @@ toggle.addEventListener("click", () => {
 izaberiKategoriju = (element, kategorija) => {
     const dostupneKategorije = {
         'istorija': '历史',
-        'geografija': '地理'
+        'geografija': '地理',
+        'hemija': '化学',
+        'fizika': '物理',
+        'knjizevnost': '文学',
+        'biologija': '生物',
+        'sociologija': '社会学',
+        'informatika': '计算机',
+        'engleski': '英语'
     };
     
     if (dostupneKategorije[kategorija]) {
