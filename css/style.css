@@ -409,6 +409,11 @@ input[type="radio"]:checked + .klikabilno{
 
 
 footer{
+    display: none;
+}
+
+.home-page footer{
+    display: block;
     position: absolute;
     bottom:5px;
     margin:auto;
@@ -775,7 +780,7 @@ footer p:hover{
         width: 100px;
     }
 
-    footer {
+    .home-page footer {
         left: 50%;
         transform: translateX(-50%);
         width: 90%;
@@ -883,7 +888,7 @@ footer p:hover{
         font-size: 1.1em;
     }
 
-    footer {
+    .home-page footer {
         font-size: 0.7em;
     }
 
