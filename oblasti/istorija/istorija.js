@@ -161,6 +161,60 @@ getOpcije = (pitanje) => {
     }
 }
 
+const snimiPogresnoPitanje = (pitanjeBroj, korisnikovOdgovor) => {
+    const pitanjaData = {
+        1: {
+            pitanje: '哪个事件被认为是第一次世界大战的开始？',
+            opcije: ['A) 签署凡尔赛条约', 'B) 弗朗茨·斐迪南遇刺', 'C) 俄国革命开始', 'D) 凡尔登战役'],
+            tacanOdgovor: 'B) 弗朗茨·斐迪南遇刺'
+        },
+        2: {
+            pitanje: '哪位皇帝在基督诞生时统治罗马帝国？',
+            opcije: ['A) 尤利乌斯·凯撒', 'B) 尼禄', 'C) 奥古斯都', 'D) 图拉真'],
+            tacanOdgovor: 'C) 奥古斯都'
+        },
+        3: {
+            pitanje: '哪个国家首次使用蒸汽机车运送乘客？',
+            opcije: ['A) 德国', 'B) 英国', 'C) 法国', 'D) 美国'],
+            tacanOdgovor: 'B) 英国'
+        },
+        4: {
+            pitanje: '哪场战役被认为是1815年拿破仑战争的决定性战役？',
+            opcije: ['A) 特拉法加战役', 'B) 滑铁卢战役', 'C) 莱比锡战役', 'D) 奥斯特里茨战役'],
+            tacanOdgovor: 'B) 滑铁卢战役'
+        },
+        5: {
+            pitanje: '冷战时期，哪两个国家是主要的超级大国？',
+            opcije: ['A) 英国和法国', 'B) 中国和日本', 'C) 美国和苏联', 'D) 德国和意大利'],
+            tacanOdgovor: 'C) 美国和苏联'
+        }
+    };
+
+    const data = pitanjaData[pitanjeBroj];
+    if (!data) return;
+
+    const pogresnoPitanje = {
+        id: `istorija_${pitanjeBroj}_${Date.now()}`,
+        kategorija: '历史',
+        pitanje: data.pitanje,
+        opcije: data.opcije,
+        korisnikovOdgovor: korisnikovOdgovor,
+        tacanOdgovor: data.tacanOdgovor,
+        vreme: new Date().toISOString()
+    };
+
+    let pogresnaPitanja = JSON.parse(localStorage.getItem('wrongQuestions') || '[]');
+    
+    const postojece = pogresnaPitanja.find(p => 
+        p.kategorija === '历史' && p.pitanje === data.pitanje
+    );
+    
+    if (!postojece) {
+        pogresnaPitanja.push(pogresnoPitanje);
+        localStorage.setItem('wrongQuestions', JSON.stringify(pogresnaPitanja));
+    }
+};
+
 proveri.onclick = () => {
     const opcije = getOpcije(pitanje); 
     const izabrana = opcije.find(opt => opt.el.checked);
@@ -173,6 +227,8 @@ proveri.onclick = () => {
     
     proveri.style.display = 'none';
     sledece.style.display = 'block';
+
+    const korisnikovOdgovor = izabrana.el.nextElementSibling.innerText;
 
     if(izabrana.tacno){
         tacno_netacno.innerText = `恭喜 ${moj_username}，回答正确！`;
@@ -190,6 +246,8 @@ proveri.onclick = () => {
     } else {
         tacno_netacno.innerText = '回答错误！';
         tacno_netacno.style.color = '#EF4444';
+        
+        snimiPogresnoPitanje(pitanje, korisnikovOdgovor);
         
         wrapper.style.animation = 'none';      
         void wrapper.offsetWidth;

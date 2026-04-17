@@ -166,6 +166,60 @@ getOpcije = (pitanje) => {
     }
 }
 
+const snimiPogresnoPitanje = (pitanjeBroj, korisnikovOdgovor) => {
+    const pitanjaData = {
+        1: {
+            pitanje: '哪个国家是世界上面积最大的国家？',
+            opcije: ['A) 中国', 'B) 加拿大', 'C) 俄罗斯', 'D) 美国'],
+            tacanOdgovor: 'C) 俄罗斯'
+        },
+        2: {
+            pitanje: '哪条河流是世界上最长的河流？',
+            opcije: ['A) 尼罗河', 'B) 亚马逊河', 'C) 密西西比河', 'D) 长江'],
+            tacanOdgovor: 'A) 尼罗河'
+        },
+        3: {
+            pitanje: '哪座山峰是世界上最高的山峰？',
+            opcije: ['A) K2', 'B) 干城章嘉峰', 'C) 珠穆朗玛峰', 'D) 洛子峰'],
+            tacanOdgovor: 'C) 珠穆朗玛峰'
+        },
+        4: {
+            pitanje: '哪个大洋是世界上面积最大的大洋？',
+            opcije: ['A) 大西洋', 'B) 太平洋', 'C) 印度洋', 'D) 北冰洋'],
+            tacanOdgovor: 'B) 太平洋'
+        },
+        5: {
+            pitanje: '哪个国家是世界上人口最多的国家？',
+            opcije: ['A) 印度', 'B) 中国', 'C) 美国', 'D) 印度尼西亚'],
+            tacanOdgovor: 'A) 印度'
+        }
+    };
+
+    const data = pitanjaData[pitanjeBroj];
+    if (!data) return;
+
+    const pogresnoPitanje = {
+        id: `geografija_${pitanjeBroj}_${Date.now()}`,
+        kategorija: '地理',
+        pitanje: data.pitanje,
+        opcije: data.opcije,
+        korisnikovOdgovor: korisnikovOdgovor,
+        tacanOdgovor: data.tacanOdgovor,
+        vreme: new Date().toISOString()
+    };
+
+    let pogresnaPitanja = JSON.parse(localStorage.getItem('wrongQuestions') || '[]');
+    
+    const postojece = pogresnaPitanja.find(p => 
+        p.kategorija === '地理' && p.pitanje === data.pitanje
+    );
+    
+    if (!postojece) {
+        pogresnaPitanja.push(pogresnoPitanje);
+        localStorage.setItem('wrongQuestions', JSON.stringify(pogresnaPitanja));
+    }
+};
+
 proveri.onclick = () => {
     const opcije = getOpcije(pitanje); 
     const izabrana = opcije.find(opt => opt.el.checked);
@@ -178,6 +232,8 @@ proveri.onclick = () => {
     
     proveri.style.display = 'none';
     sledece.style.display = 'block';
+
+    const korisnikovOdgovor = izabrana.el.nextElementSibling.innerText;
 
     if(izabrana.tacno){
         tacno_netacno.innerText = `恭喜 ${moj_username}，回答正确！`;
@@ -195,6 +251,8 @@ proveri.onclick = () => {
     } else {
         tacno_netacno.innerText = '回答错误！';
         tacno_netacno.style.color = '#EF4444';
+        
+        snimiPogresnoPitanje(pitanje, korisnikovOdgovor);
         
         wrapper.style.animation = 'none';      
         void wrapper.offsetWidth;
