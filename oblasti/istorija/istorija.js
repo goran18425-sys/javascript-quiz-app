@@ -24,8 +24,8 @@ const timeline_container = document.getElementById('timeline-container');
 
 
 
-proveri.innerText = 'Proveri';
-sledece.innerText = 'Sledece➜';
+proveri.innerText = '检查答案';
+sledece.innerText = '下一题➜';
 let bodovi = 0;
 let pitanje = 0;
 let tacan_odgovor = 0;
@@ -46,7 +46,7 @@ pocni_kviz.onclick = () => {
         unesi_username.style.animation = 'none';      
         void unesi_username.offsetWidth;             
         unesi_username.style.animation = 'shake 1s 1';
-        unesi_username.innerText = 'Morate uneti username!'
+        unesi_username.innerText = '请输入用户名！'
         return;    
     }
     moj_username = inputUsername; 
@@ -62,8 +62,8 @@ pocni_kviz.onclick = () => {
     igrac.style.display = 'flex';
     slicica.style.margin ='10px auto';
 
-    bodovi_tekst.innerText = `Bodovi: ${bodovi}`;        
-    igrac.innerText = `Igrac : ${moj_username}`;
+    bodovi_tekst.innerText = `分数：${bodovi}`;        
+    igrac.innerText = `玩家：${moj_username}`;
     unesi_username.innerText = '';
     
     postaviPitanje();
@@ -73,36 +73,36 @@ pocni_kviz.onclick = () => {
 postaviPitanje = () => {
     pitanje++;
     if(pitanje === 1){
-        naslov.innerText = `${pitanje}. Pitanje - Koji događaj se smatra početkom Prvog svetskog rata?`;
-        prvo_tekst.innerText ='A) Potpisivanje Versajskog ugovora';
-        drugo_tekst.innerText = 'B) Atentat na Franca Ferdinanda';
-        trece_tekst.innerText = 'C) Početak Ruske revolucije';
-        cetvrto_tekst.innerText = 'D) Bitka kod Verduna';
+        naslov.innerText = `${pitanje}. 哪个事件被认为是第一次世界大战的开始？`;
+        prvo_tekst.innerText ='A) 签署凡尔赛条约';
+        drugo_tekst.innerText = 'B) 弗朗茨·斐迪南遇刺';
+        trece_tekst.innerText = 'C) 俄国革命开始';
+        cetvrto_tekst.innerText = 'D) 凡尔登战役';
 
     } else if(pitanje === 2){
-        naslov.innerText = `${pitanje}. Koji car je vladao Rimskim Carstvom u vreme Hristovog rođenja?`;
-        prvo_tekst.innerText = 'A) Julije Cezar';
-        drugo_tekst.innerText = 'B) Neron';
-        trece_tekst.innerText = 'C) Avgust';
-        cetvrto_tekst.innerText = 'D) Trajan';
+        naslov.innerText = `${pitanje}. 哪位皇帝在基督诞生时统治罗马帝国？`;
+        prvo_tekst.innerText = 'A) 尤利乌斯·凯撒';
+        drugo_tekst.innerText = 'B) 尼禄';
+        trece_tekst.innerText = 'C) 奥古斯都';
+        cetvrto_tekst.innerText = 'D) 图拉真';
     } else if(pitanje === 3){
-        naslov.innerText = `${pitanje}. Koja država je prvi put koristila parnu lokomotivu za prevoz putnika?`;
-        prvo_tekst.innerText = 'A) Nemačka';
-        drugo_tekst.innerText = 'B) Velika Britanija';
-        trece_tekst.innerText = 'C) Francuska';
-        cetvrto_tekst.innerText = 'D) SAD';
+        naslov.innerText = `${pitanje}. 哪个国家首次使用蒸汽机车运送乘客？`;
+        prvo_tekst.innerText = 'A) 德国';
+        drugo_tekst.innerText = 'B) 英国';
+        trece_tekst.innerText = 'C) 法国';
+        cetvrto_tekst.innerText = 'D) 美国';
     } else if(pitanje === 4){
-        naslov.innerText = `${pitanje}. Koja bitka se smatra odlučujućom u Napoleonovim ratovima 1815. godine?`;
-        prvo_tekst.innerText = 'A) Bitka kod Trafalgara';
-        drugo_tekst.innerText = 'B) Bitka kod Vaterloa';
-        trece_tekst.innerText = 'C) Bitka kod Leipziga';
-        cetvrto_tekst.innerText = 'D) Bitka kod Austerlica';
+        naslov.innerText = `${pitanje}. 哪场战役被认为是1815年拿破仑战争的决定性战役？`;
+        prvo_tekst.innerText = 'A) 特拉法加战役';
+        drugo_tekst.innerText = 'B) 滑铁卢战役';
+        trece_tekst.innerText = 'C) 莱比锡战役';
+        cetvrto_tekst.innerText = 'D) 奥斯特里茨战役';
     } else if(pitanje === 5){
-        naslov.innerText = `${pitanje}. Koja bitka se smatra odlučujućom u Napoleonovim ratovima 1815. godine?`;
-        prvo_tekst.innerText = 'A) Velika Britanija';
-        drugo_tekst.innerText = 'B) Francuska';
-        trece_tekst.innerText = 'C) SAD';
-        cetvrto_tekst.innerText = 'D) Švedska';
+        naslov.innerText = `${pitanje}. 冷战时期，哪两个国家是主要的超级大国？`;
+        prvo_tekst.innerText = 'A) 英国和法国';
+        drugo_tekst.innerText = 'B) 中国和日本';
+        trece_tekst.innerText = 'C) 美国和苏联';
+        cetvrto_tekst.innerText = 'D) 德国和意大利';
     }
     [prvo, drugo, trece, cetvrto].forEach(r => r.checked = false);
     document.querySelectorAll('.klikabilno').forEach(l => l.classList.remove('bold'));
@@ -139,8 +139,8 @@ getOpcije = (pitanje) => {
         ];
     } else if(pitanje === 3){
         return [
-            {el: prvo, tacno: true},
-            {el: drugo, tacno: false},
+            {el: prvo, tacno: false},
+            {el: drugo, tacno: true},
             {el: trece, tacno: false},
             {el: cetvrto, tacno: false}
         ];
@@ -161,21 +161,77 @@ getOpcije = (pitanje) => {
     }
 }
 
+const snimiPogresnoPitanje = (pitanjeBroj, korisnikovOdgovor) => {
+    const pitanjaData = {
+        1: {
+            pitanje: '哪个事件被认为是第一次世界大战的开始？',
+            opcije: ['A) 签署凡尔赛条约', 'B) 弗朗茨·斐迪南遇刺', 'C) 俄国革命开始', 'D) 凡尔登战役'],
+            tacanOdgovor: 'B) 弗朗茨·斐迪南遇刺'
+        },
+        2: {
+            pitanje: '哪位皇帝在基督诞生时统治罗马帝国？',
+            opcije: ['A) 尤利乌斯·凯撒', 'B) 尼禄', 'C) 奥古斯都', 'D) 图拉真'],
+            tacanOdgovor: 'C) 奥古斯都'
+        },
+        3: {
+            pitanje: '哪个国家首次使用蒸汽机车运送乘客？',
+            opcije: ['A) 德国', 'B) 英国', 'C) 法国', 'D) 美国'],
+            tacanOdgovor: 'B) 英国'
+        },
+        4: {
+            pitanje: '哪场战役被认为是1815年拿破仑战争的决定性战役？',
+            opcije: ['A) 特拉法加战役', 'B) 滑铁卢战役', 'C) 莱比锡战役', 'D) 奥斯特里茨战役'],
+            tacanOdgovor: 'B) 滑铁卢战役'
+        },
+        5: {
+            pitanje: '冷战时期，哪两个国家是主要的超级大国？',
+            opcije: ['A) 英国和法国', 'B) 中国和日本', 'C) 美国和苏联', 'D) 德国和意大利'],
+            tacanOdgovor: 'C) 美国和苏联'
+        }
+    };
+
+    const data = pitanjaData[pitanjeBroj];
+    if (!data) return;
+
+    const pogresnoPitanje = {
+        id: `istorija_${pitanjeBroj}_${Date.now()}`,
+        kategorija: '历史',
+        pitanje: data.pitanje,
+        opcije: data.opcije,
+        korisnikovOdgovor: korisnikovOdgovor,
+        tacanOdgovor: data.tacanOdgovor,
+        vreme: new Date().toISOString()
+    };
+
+    let pogresnaPitanja = JSON.parse(localStorage.getItem('wrongQuestions') || '[]');
+    
+    const postojece = pogresnaPitanja.find(p => 
+        p.kategorija === '历史' && p.pitanje === data.pitanje
+    );
+    
+    if (!postojece) {
+        pogresnaPitanja.push(pogresnoPitanje);
+        localStorage.setItem('wrongQuestions', JSON.stringify(pogresnaPitanja));
+    }
+};
+
 proveri.onclick = () => {
     const opcije = getOpcije(pitanje); 
     const izabrana = opcije.find(opt => opt.el.checked);
 
     if(!izabrana){
         tacno_netacno.style.color = '#374151'
-        tacno_netacno.innerText = 'Morate nešto da izaberete!';
+        tacno_netacno.innerText = '请选择一个答案！';
         return;
     }
     
     proveri.style.display = 'none';
     sledece.style.display = 'block';
 
+    const korisnikovOdgovor = izabrana.el.nextElementSibling.innerText;
+
     if(izabrana.tacno){
-        tacno_netacno.innerText = `Bravo ${moj_username} tacan odgovor!`;
+        tacno_netacno.innerText = `恭喜 ${moj_username}，回答正确！`;
         tacno_netacno.style.color = '#22C55E';
         bodovi += 10;
         
@@ -188,17 +244,19 @@ proveri.onclick = () => {
         wrapper.style.animation = 'tacanOdgovor 1s 1';
         tacan_odgovor ++;
     } else {
-        tacno_netacno.innerText = 'Netacan odgovor!';
+        tacno_netacno.innerText = '回答错误！';
         tacno_netacno.style.color = '#EF4444';
+        
+        snimiPogresnoPitanje(pitanje, korisnikovOdgovor);
         
         wrapper.style.animation = 'none';      
         void wrapper.offsetWidth;
         wrapper.style.animation = 'netacanOdgovor 1s 1';
     }
-    bodovi_tekst.innerText = `Bodovi: ${bodovi}`;
+    bodovi_tekst.innerText = `分数：${bodovi}`;
 
     if(pitanje === 5){
-        sledece.innerText = 'Kraj kviza';
+        sledece.innerText = '测验结束';
         sledece.onclick = krajKviza;
     }
 };
@@ -206,11 +264,11 @@ krajKviza = () => {
     let procenat =  (tacan_odgovor / pitanje) * 100;
     procenat = (procenat.toFixed(2));
     if(bodovi === (pitanje * 10)) {
-        naslov.innerHTML = `Cestitam ${moj_username} kviz je završen!<br>Na sva pitanja ste dali tacan odgovor!<h3>Broj bodova: ${bodovi}/${pitanje*10}</h3><h3>${procenat}%</h3>`;
+        naslov.innerHTML = `恭喜 ${moj_username}，测验完成！<br>所有问题都回答正确！<h3>得分：${bodovi}/${pitanje*10}</h3><h3>${procenat}%</h3>`;
     }else if(bodovi === 0){
-        naslov.innerHTML = `${moj_username} kviz je završen!<br>Ni na jedno pitanje niste dali tacan odgovor!<h3>Broj bodova: ${bodovi}/${pitanje*10}</h3><h3>${procenat}%</h3>`;
+        naslov.innerHTML = `${moj_username}，测验完成！<br>很遗憾，没有答对任何题目！<h3>得分：${bodovi}/${pitanje*10}</h3><h3>${procenat}%</h3>`;
     }else {
-        naslov.innerHTML = `<h2>Cestitam ${moj_username} kviz je završen!</h2><h3>Broj bodova: ${bodovi}/${pitanje*10}</h3><h3>${procenat}%</h3>`;
+        naslov.innerHTML = `<h2>恭喜 ${moj_username}，测验完成！</h2><h3>得分：${bodovi}/${pitanje*10}</h3><h3>${procenat}%</h3>`;
     }
     
     
@@ -225,7 +283,7 @@ krajKviza = () => {
     timeline_container.style.display = 'none';
 
     tacno_netacno.style.color = '#111827'
-    tacno_netacno.innerHTML = '<a href="../../index.html">⬅Vrati se na pocetnu</a>';
+    tacno_netacno.innerHTML = '<a href="../../index.html">⬅返回首页</a>';
     vrati.remove();
 }
 
