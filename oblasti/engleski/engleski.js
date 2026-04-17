@@ -31,6 +31,38 @@ let tacan_odgovor = 0;
 const userValue = username.value;
 let moj_username = '';
 
+const pitanjaData = {
+    1: {
+        pitanje: 'She ___ to school every day.',
+        opcije: ['A) go', 'B) goes', 'C) going', 'D) went'],
+        tacanOdgovor: 'B) goes',
+        objasnjenje: '这是一般现在时，主语是第三人称单数she，动词需要用第三人称单数形式goes。go用于第一、二人称和复数主语，going是现在分词，went是过去式。'
+    },
+    2: {
+        pitanje: '"Beautiful"的反义词是什么？',
+        opcije: ['A) Pretty', 'B) Handsome', 'C) Ugly', 'D) Nice'],
+        tacanOdgovor: 'C) Ugly',
+        objasnjenje: 'Beautiful（美丽的）的反义词是ugly（丑陋的）。pretty（漂亮的）、handsome（英俊的）、nice（好的）都是近义词或褒义词。'
+    },
+    3: {
+        pitanje: '选择正确的句子：',
+        opcije: ['A) She don\'t like apples.', 'B) She doesn\'t likes apples.', 'C) She doesn\'t like apples.', 'D) She not like apples.'],
+        tacanOdgovor: 'C) She doesn\'t like apples.',
+        objasnjenje: '一般现在时的否定句，主语是第三人称单数she时，要用doesn\'t + 动词原形。正确形式是She doesn\'t like apples。其他选项错误：don\'t用于非第三人称单数，doesn\'t后不应加s，不能直接用not。'
+    },
+    4: {
+        pitanje: '"I have been studying English for 5 years." 这句话是什么时态？',
+        opcije: ['A) 现在完成时', 'B) 现在完成进行时', 'C) 过去完成时', 'D) 一般现在时'],
+        tacanOdgovor: 'B) 现在完成进行时',
+        objasnjenje: '现在完成进行时的结构是have/has been + 现在分词，表示动作从过去开始一直持续到现在，可能还会继续下去。现在完成时是have/has + 过去分词，强调结果。'
+    },
+    5: {
+        pitanje: '选择正确的问句形式：',
+        opcije: ['A) Where you go yesterday?', 'B) Where did you went yesterday?', 'C) Where did you go yesterday?', 'D) Where you went yesterday?'],
+        tacanOdgovor: 'C) Where did you go yesterday?',
+        objasnjenje: '一般过去时的特殊疑问句结构是：疑问词 + did + 主语 + 动词原形 + 其他？yesterday是过去时间状语，要用过去时。正确形式是Where did you go yesterday？其他选项错误：缺少助动词，或动词形式错误。'
+    }
+};
 
 document.querySelectorAll('.klikabilno').forEach(el => {
     el.style.display = 'none';
@@ -74,38 +106,15 @@ pocni_kviz.onclick = () => {
 
 postaviPitanje = () => {
     pitanje++;
-    if(pitanje === 1){
-        naslov.innerText = `${pitanje}. 哪个国家是世界上面积最大的国家？`;
-        prvo_tekst.innerText ='A) 中国';
-        drugo_tekst.innerText = 'B) 加拿大';
-        trece_tekst.innerText = 'C) 俄罗斯';
-        cetvrto_tekst.innerText = 'D) 美国';
-
-    } else if(pitanje === 2){
-        naslov.innerText = `${pitanje}. 哪条河流是世界上最长的河流？`;
-        prvo_tekst.innerText = 'A) 尼罗河';
-        drugo_tekst.innerText = 'B) 亚马逊河';
-        trece_tekst.innerText = 'C) 密西西比河';
-        cetvrto_tekst.innerText = 'D) 长江';
-    } else if(pitanje === 3){
-        naslov.innerText = `${pitanje}. 哪座山峰是世界上最高的山峰？`;
-        prvo_tekst.innerText = 'A) K2';
-        drugo_tekst.innerText = 'B) 干城章嘉峰';
-        trece_tekst.innerText = 'C) 珠穆朗玛峰';
-        cetvrto_tekst.innerText = 'D) 洛子峰';
-    } else if(pitanje === 4){
-        naslov.innerText = `${pitanje}. 哪个大洋是世界上面积最大的大洋？`;
-        prvo_tekst.innerText = 'A) 大西洋';
-        drugo_tekst.innerText = 'B) 太平洋';
-        trece_tekst.innerText = 'C) 印度洋';
-        cetvrto_tekst.innerText = 'D) 北冰洋';
-    } else if(pitanje === 5){
-        naslov.innerText = `${pitanje}. 哪个国家是世界上人口最多的国家？`;
-        prvo_tekst.innerText = 'A) 印度';
-        drugo_tekst.innerText = 'B) 中国';
-        trece_tekst.innerText = 'C) 美国';
-        cetvrto_tekst.innerText = 'D) 印度尼西亚';
+    const data = pitanjaData[pitanje];
+    if (data) {
+        naslov.innerText = `${pitanje}. ${data.pitanje}`;
+        prvo_tekst.innerText = data.opcije[0];
+        drugo_tekst.innerText = data.opcije[1];
+        trece_tekst.innerText = data.opcije[2];
+        cetvrto_tekst.innerText = data.opcije[3];
     }
+    
     [prvo, drugo, trece, cetvrto].forEach(r => r.checked = false);
     document.querySelectorAll('.klikabilno').forEach(l => l.classList.remove('bold'));
     tacno_netacno.innerText = '';
@@ -131,15 +140,15 @@ getOpcije = (pitanje) => {
     if(pitanje === 1){
         return [
             {el: prvo, tacno: false},
-            {el: drugo, tacno: false},
-            {el: trece, tacno: true},
+            {el: drugo, tacno: true},
+            {el: trece, tacno: false},
             {el: cetvrto, tacno: false}
         ];
     } else if(pitanje === 2){
         return [
-            {el: prvo, tacno: true},
+            {el: prvo, tacno: false},
             {el: drugo, tacno: false},
-            {el: trece, tacno: false},
+            {el: trece, tacno: true},
             {el: cetvrto, tacno: false}
         ];
     } else if(pitanje === 3){
@@ -158,60 +167,33 @@ getOpcije = (pitanje) => {
         ];
     } else if(pitanje === 5){
         return [
-            {el: prvo, tacno: true},
+            {el: prvo, tacno: false},
             {el: drugo, tacno: false},
-            {el: trece, tacno: false},
+            {el: trece, tacno: true},
             {el: cetvrto, tacno: false}
         ];
     }
 }
 
 const snimiPogresnoPitanje = (pitanjeBroj, korisnikovOdgovor) => {
-    const pitanjaData = {
-        1: {
-            pitanje: '哪个国家是世界上面积最大的国家？',
-            opcije: ['A) 中国', 'B) 加拿大', 'C) 俄罗斯', 'D) 美国'],
-            tacanOdgovor: 'C) 俄罗斯'
-        },
-        2: {
-            pitanje: '哪条河流是世界上最长的河流？',
-            opcije: ['A) 尼罗河', 'B) 亚马逊河', 'C) 密西西比河', 'D) 长江'],
-            tacanOdgovor: 'A) 尼罗河'
-        },
-        3: {
-            pitanje: '哪座山峰是世界上最高的山峰？',
-            opcije: ['A) K2', 'B) 干城章嘉峰', 'C) 珠穆朗玛峰', 'D) 洛子峰'],
-            tacanOdgovor: 'C) 珠穆朗玛峰'
-        },
-        4: {
-            pitanje: '哪个大洋是世界上面积最大的大洋？',
-            opcije: ['A) 大西洋', 'B) 太平洋', 'C) 印度洋', 'D) 北冰洋'],
-            tacanOdgovor: 'B) 太平洋'
-        },
-        5: {
-            pitanje: '哪个国家是世界上人口最多的国家？',
-            opcije: ['A) 印度', 'B) 中国', 'C) 美国', 'D) 印度尼西亚'],
-            tacanOdgovor: 'A) 印度'
-        }
-    };
-
     const data = pitanjaData[pitanjeBroj];
     if (!data) return;
 
     const pogresnoPitanje = {
-        id: `geografija_${pitanjeBroj}_${Date.now()}`,
-        kategorija: '地理',
+        id: `engleski_${pitanjeBroj}_${Date.now()}`,
+        kategorija: '英语',
         pitanje: data.pitanje,
         opcije: data.opcije,
         korisnikovOdgovor: korisnikovOdgovor,
         tacanOdgovor: data.tacanOdgovor,
+        objasnjenje: data.objasnjenje,
         vreme: new Date().toISOString()
     };
 
     let pogresnaPitanja = JSON.parse(localStorage.getItem('wrongQuestions') || '[]');
     
     const postojece = pogresnaPitanja.find(p => 
-        p.kategorija === '地理' && p.pitanje === data.pitanje
+        p.kategorija === '英语' && p.pitanje === data.pitanje
     );
     
     if (!postojece) {
@@ -234,9 +216,10 @@ proveri.onclick = () => {
     sledece.style.display = 'block';
 
     const korisnikovOdgovor = izabrana.el.nextElementSibling.innerText;
+    const data = pitanjaData[pitanje];
 
     if(izabrana.tacno){
-        tacno_netacno.innerText = `恭喜 ${moj_username}，回答正确！`;
+        tacno_netacno.innerHTML = `恭喜 ${moj_username}，回答正确！<br><span style="font-size: 0.9em; color: var(--tekst_muted);">${data.objasnjenje}</span>`;
         tacno_netacno.style.color = '#22C55E';
         bodovi += 10;
         
@@ -249,7 +232,7 @@ proveri.onclick = () => {
         wrapper.style.animation = 'tacanOdgovor 1s 1';
         tacan_odgovor ++;
     } else {
-        tacno_netacno.innerText = '回答错误！';
+        tacno_netacno.innerHTML = `回答错误！<br><span style="font-size: 0.9em; color: var(--tekst_muted);">${data.objasnjenje}</span>`;
         tacno_netacno.style.color = '#EF4444';
         
         snimiPogresnoPitanje(pitanje, korisnikovOdgovor);

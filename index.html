@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="sr">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,46 +8,66 @@
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>Kviz</title>
+    <title>知识测验</title>
 </head>
 <body>
 
-    <div id="wrapper">
+    <div id="wrapper" class="home-page">
         <section>
             <header>
-                <h1><a href="index.html">KVIZ<sub>by GB</sub></a></h1>
+                <h1><a href="index.html">知识测验<sub>by GB</sub></a></h1>
                 
             </header>
-            <p id="togglePitanja">╰┈➤Izaberi oblast</p>
+            <p id="togglePitanja">╰┈➤选择分类</p>
 
             <div id="setPitanja">
                 <h3 class="zatvori" onclick="zatvoriSet()">X</h3>
-                <div class="pitanja">
-                    <h3 onclick="oblast(this)"><a href="oblasti/istorija/istorija.html">Istorija</a></h3>
-                </div>
-                <div class="pitanja">
-                    <h3 onclick="oblast(this)"><a href="oblasti/geografija/geografija.html">Geografija</a></h3>
-                </div>
-                <div class="pitanja">
-                    <h3 onclick="oblast(this)"><a href="#">Hemija</a></h3>
-                </div>
-                <div class="pitanja">
-                    <h3 onclick="oblast(this)"><a href="#">Fizika</a></h3>
-                </div>
-                <div class="pitanja">
-                    <h3 onclick="oblast(this)"><a href="#">Knjizevnost</a></h3>
-                </div>
-                <div class="pitanja">
-                    <h3 onclick="oblast(this)"><a href="#">Biologija</a></h3>
-                </div>
-                <div class="pitanja">
-                    <h3 onclick="oblast(this)"><a href="#">Sociologija</a></h3>
-                </div>
-                <div class="pitanja">
-                    <h3 onclick="oblast(this)"><a href="#">Informatika</a></h3>
-                </div>
-                <div class="pitanja">
-                    <h3 onclick="oblast(this)"><a href="#">Engleski</a></h3>
+                <div class="kategorije-grid">
+                    <div class="kategorija-kartica" onclick="izaberiKategoriju(this, 'istorija')">
+                        <span class="emoji">📜</span>
+                        <h3>历史</h3>
+                        <p class="broj-pitanja">（5题）</p>
+                    </div>
+                    <div class="kategorija-kartica" onclick="izaberiKategoriju(this, 'geografija')">
+                        <span class="emoji">🌍</span>
+                        <h3>地理</h3>
+                        <p class="broj-pitanja">（5题）</p>
+                    </div>
+                    <div class="kategorija-kartica" onclick="izaberiKategoriju(this, 'hemija')">
+                        <span class="emoji">🧪</span>
+                        <h3>化学</h3>
+                        <p class="broj-pitanja">（5题）</p>
+                    </div>
+                    <div class="kategorija-kartica" onclick="izaberiKategoriju(this, 'fizika')">
+                        <span class="emoji">⚛️</span>
+                        <h3>物理</h3>
+                        <p class="broj-pitanja">（5题）</p>
+                    </div>
+                    <div class="kategorija-kartica" onclick="izaberiKategoriju(this, 'knjizevnost')">
+                        <span class="emoji">📚</span>
+                        <h3>文学</h3>
+                        <p class="broj-pitanja">（5题）</p>
+                    </div>
+                    <div class="kategorija-kartica" onclick="izaberiKategoriju(this, 'biologija')">
+                        <span class="emoji">🧬</span>
+                        <h3>生物</h3>
+                        <p class="broj-pitanja">（5题）</p>
+                    </div>
+                    <div class="kategorija-kartica" onclick="izaberiKategoriju(this, 'sociologija')">
+                        <span class="emoji">👥</span>
+                        <h3>社会学</h3>
+                        <p class="broj-pitanja">（5题）</p>
+                    </div>
+                    <div class="kategorija-kartica" onclick="izaberiKategoriju(this, 'informatika')">
+                        <span class="emoji">💻</span>
+                        <h3>计算机</h3>
+                        <p class="broj-pitanja">（5题）</p>
+                    </div>
+                    <div class="kategorija-kartica" onclick="izaberiKategoriju(this, 'engleski')">
+                        <span class="emoji">📖</span>
+                        <h3>英语</h3>
+                        <p class="broj-pitanja">（5题）</p>
+                    </div>
                 </div>
             </div>
             <br>
@@ -55,8 +75,12 @@
 
         </section>
 
+        <div id="bottom-buttons">
+            <button id="wrong-questions-btn" onclick="window.location.href='wrong-questions.html'">📝 错题库</button>
+        </div>
+
         <footer onclick="footer()">
-            <p>Kviz napravio Goran Basic</p>
+            <p>作者：Goran Basic</p>
         </footer>
 
         <div class="overlay"></div>
@@ -64,11 +88,11 @@
     </div>
     <div id="modal">
         <h2 id="zatvoriModal" onclick="zatvori()" class="zatvori">X</h2>
-        <h2>O autoru</h2>
-        <p>Zovem se Goran Basic imam 19 godina i student sam ITS – Visoke škole strukovnih studija za informacione tehnologije.</p>
-        <p>Ovaj kviz je nastao iz lične radoznalosti i želje da znanje stečeno na fakultetu primenim u praksi.</p>
-        <p>Kroz izradu projekta radio sam na logici pitanja, bodovanju i funkcionalnosti aplikacije, koristeći HTML, CSS i JavaScript.</p>
-        <p>Cilj mi je bio da kroz samostalni rad dodatno unapredim veštine web programiranja i testiram sopstvene ideje.</p>
+        <h2>关于作者</h2>
+        <p>我叫Goran Basic，19岁，是ITS - 高等信息技术职业学院的学生。</p>
+        <p>这个测验是出于个人好奇心和将在大学学到的知识应用于实践的愿望而创建的。</p>
+        <p>在项目开发过程中，我使用HTML、CSS和JavaScript研究了问题逻辑、评分和应用功能。</p>
+        <p>我的目标是通过独立工作进一步提高我的Web编程技能并测试我自己的想法。</p>
     </div>
 
     

@@ -31,6 +31,38 @@ let tacan_odgovor = 0;
 const userValue = username.value;
 let moj_username = '';
 
+const pitanjaData = {
+    1: {
+        pitanje: '《红楼梦》的作者是谁？',
+        opcije: ['A) 罗贯中', 'B) 施耐庵', 'C) 曹雪芹', 'D) 吴承恩'],
+        tacanOdgovor: 'C) 曹雪芹',
+        objasnjenje: '《红楼梦》是中国古典四大名著之一，作者是清代作家曹雪芹。罗贯中著《三国演义》，施耐庵著《水浒传》，吴承恩著《西游记》。'
+    },
+    2: {
+        pitanje: '"床前明月光，疑是地上霜"是谁的诗句？',
+        opcije: ['A) 杜甫', 'B) 李白', 'C) 白居易', 'D) 王维'],
+        tacanOdgovor: 'B) 李白',
+        objasnjenje: '这是唐代诗人李白的《静夜思》。李白被称为"诗仙"，是中国历史上最伟大的浪漫主义诗人之一。'
+    },
+    3: {
+        pitanje: '以下哪部是鲁迅的作品？',
+        opcije: ['A) 《骆驼祥子》', 'B) 《阿Q正传》', 'C) 《家》', 'D) 《雷雨》'],
+        tacanOdgovor: 'B) 《阿Q正传》',
+        objasnjenje: '《阿Q正传》是鲁迅的代表作之一。《骆驼祥子》是老舍的作品，《家》是巴金的作品，《雷雨》是曹禺的作品。'
+    },
+    4: {
+        pitanje: '"窈窕淑女，君子好逑"出自哪部经典？',
+        opcije: ['A) 《论语》', 'B) 《孟子》', 'C) 《诗经》', 'D) 《楚辞》'],
+        tacanOdgovor: 'C) 《诗经》',
+        objasnjenje: '这句诗出自《诗经·周南·关雎》，是《诗经》的开篇之作。《诗经》是中国最早的诗歌总集，收录了西周初年到春秋中叶的诗歌305篇。'
+    },
+    5: {
+        pitanje: '以下哪位是唐宋八大家之一？',
+        opcije: ['A) 李白', 'B) 杜甫', 'C) 苏轼', 'D) 陆游'],
+        tacanOdgovor: 'C) 苏轼',
+        objasnjenje: '唐宋八大家是唐代韩愈、柳宗元和宋代苏轼、苏洵、苏辙、王安石、曾巩、欧阳修八位散文家的合称。李白、杜甫是唐代著名诗人，陆游是南宋著名诗人，但都不属于唐宋八大家。'
+    }
+};
 
 document.querySelectorAll('.klikabilno').forEach(el => {
     el.style.display = 'none';
@@ -74,38 +106,15 @@ pocni_kviz.onclick = () => {
 
 postaviPitanje = () => {
     pitanje++;
-    if(pitanje === 1){
-        naslov.innerText = `${pitanje}. 哪个国家是世界上面积最大的国家？`;
-        prvo_tekst.innerText ='A) 中国';
-        drugo_tekst.innerText = 'B) 加拿大';
-        trece_tekst.innerText = 'C) 俄罗斯';
-        cetvrto_tekst.innerText = 'D) 美国';
-
-    } else if(pitanje === 2){
-        naslov.innerText = `${pitanje}. 哪条河流是世界上最长的河流？`;
-        prvo_tekst.innerText = 'A) 尼罗河';
-        drugo_tekst.innerText = 'B) 亚马逊河';
-        trece_tekst.innerText = 'C) 密西西比河';
-        cetvrto_tekst.innerText = 'D) 长江';
-    } else if(pitanje === 3){
-        naslov.innerText = `${pitanje}. 哪座山峰是世界上最高的山峰？`;
-        prvo_tekst.innerText = 'A) K2';
-        drugo_tekst.innerText = 'B) 干城章嘉峰';
-        trece_tekst.innerText = 'C) 珠穆朗玛峰';
-        cetvrto_tekst.innerText = 'D) 洛子峰';
-    } else if(pitanje === 4){
-        naslov.innerText = `${pitanje}. 哪个大洋是世界上面积最大的大洋？`;
-        prvo_tekst.innerText = 'A) 大西洋';
-        drugo_tekst.innerText = 'B) 太平洋';
-        trece_tekst.innerText = 'C) 印度洋';
-        cetvrto_tekst.innerText = 'D) 北冰洋';
-    } else if(pitanje === 5){
-        naslov.innerText = `${pitanje}. 哪个国家是世界上人口最多的国家？`;
-        prvo_tekst.innerText = 'A) 印度';
-        drugo_tekst.innerText = 'B) 中国';
-        trece_tekst.innerText = 'C) 美国';
-        cetvrto_tekst.innerText = 'D) 印度尼西亚';
+    const data = pitanjaData[pitanje];
+    if (data) {
+        naslov.innerText = `${pitanje}. ${data.pitanje}`;
+        prvo_tekst.innerText = data.opcije[0];
+        drugo_tekst.innerText = data.opcije[1];
+        trece_tekst.innerText = data.opcije[2];
+        cetvrto_tekst.innerText = data.opcije[3];
     }
+    
     [prvo, drugo, trece, cetvrto].forEach(r => r.checked = false);
     document.querySelectorAll('.klikabilno').forEach(l => l.classList.remove('bold'));
     tacno_netacno.innerText = '';
@@ -137,81 +146,54 @@ getOpcije = (pitanje) => {
         ];
     } else if(pitanje === 2){
         return [
-            {el: prvo, tacno: true},
-            {el: drugo, tacno: false},
+            {el: prvo, tacno: false},
+            {el: drugo, tacno: true},
             {el: trece, tacno: false},
             {el: cetvrto, tacno: false}
         ];
     } else if(pitanje === 3){
         return [
             {el: prvo, tacno: false},
-            {el: drugo, tacno: false},
-            {el: trece, tacno: true},
+            {el: drugo, tacno: true},
+            {el: trece, tacno: false},
             {el: cetvrto, tacno: false}
         ];
     } else if(pitanje === 4){
         return [
             {el: prvo, tacno: false},
-            {el: drugo, tacno: true},
-            {el: trece, tacno: false},
+            {el: drugo, tacno: false},
+            {el: trece, tacno: true},
             {el: cetvrto, tacno: false}
         ];
     } else if(pitanje === 5){
         return [
-            {el: prvo, tacno: true},
+            {el: prvo, tacno: false},
             {el: drugo, tacno: false},
-            {el: trece, tacno: false},
+            {el: trece, tacno: true},
             {el: cetvrto, tacno: false}
         ];
     }
 }
 
 const snimiPogresnoPitanje = (pitanjeBroj, korisnikovOdgovor) => {
-    const pitanjaData = {
-        1: {
-            pitanje: '哪个国家是世界上面积最大的国家？',
-            opcije: ['A) 中国', 'B) 加拿大', 'C) 俄罗斯', 'D) 美国'],
-            tacanOdgovor: 'C) 俄罗斯'
-        },
-        2: {
-            pitanje: '哪条河流是世界上最长的河流？',
-            opcije: ['A) 尼罗河', 'B) 亚马逊河', 'C) 密西西比河', 'D) 长江'],
-            tacanOdgovor: 'A) 尼罗河'
-        },
-        3: {
-            pitanje: '哪座山峰是世界上最高的山峰？',
-            opcije: ['A) K2', 'B) 干城章嘉峰', 'C) 珠穆朗玛峰', 'D) 洛子峰'],
-            tacanOdgovor: 'C) 珠穆朗玛峰'
-        },
-        4: {
-            pitanje: '哪个大洋是世界上面积最大的大洋？',
-            opcije: ['A) 大西洋', 'B) 太平洋', 'C) 印度洋', 'D) 北冰洋'],
-            tacanOdgovor: 'B) 太平洋'
-        },
-        5: {
-            pitanje: '哪个国家是世界上人口最多的国家？',
-            opcije: ['A) 印度', 'B) 中国', 'C) 美国', 'D) 印度尼西亚'],
-            tacanOdgovor: 'A) 印度'
-        }
-    };
-
     const data = pitanjaData[pitanjeBroj];
     if (!data) return;
 
     const pogresnoPitanje = {
-        id: `geografija_${pitanjeBroj}_${Date.now()}`,
-        kategorija: '地理',
+        id: `knjizevnost_${pitanjeBroj}_${Date.now()}`,
+        kategorija: '文学',
         pitanje: data.pitanje,
         opcije: data.opcije,
         korisnikovOdgovor: korisnikovOdgovor,
         tacanOdgovor: data.tacanOdgovor,
+        objasnjenje: data.objasnjenje,
         vreme: new Date().toISOString()
     };
 
     let pogresnaPitanja = JSON.parse(localStorage.getItem('wrongQuestions') || '[]');
     
     const postojece = pogresnaPitanja.find(p => 
-        p.kategorija === '地理' && p.pitanje === data.pitanje
+        p.kategorija === '文学' && p.pitanje === data.pitanje
     );
     
     if (!postojece) {
@@ -234,9 +216,10 @@ proveri.onclick = () => {
     sledece.style.display = 'block';
 
     const korisnikovOdgovor = izabrana.el.nextElementSibling.innerText;
+    const data = pitanjaData[pitanje];
 
     if(izabrana.tacno){
-        tacno_netacno.innerText = `恭喜 ${moj_username}，回答正确！`;
+        tacno_netacno.innerHTML = `恭喜 ${moj_username}，回答正确！<br><span style="font-size: 0.9em; color: var(--tekst_muted);">${data.objasnjenje}</span>`;
         tacno_netacno.style.color = '#22C55E';
         bodovi += 10;
         
@@ -249,7 +232,7 @@ proveri.onclick = () => {
         wrapper.style.animation = 'tacanOdgovor 1s 1';
         tacan_odgovor ++;
     } else {
-        tacno_netacno.innerText = '回答错误！';
+        tacno_netacno.innerHTML = `回答错误！<br><span style="font-size: 0.9em; color: var(--tekst_muted);">${data.objasnjenje}</span>`;
         tacno_netacno.style.color = '#EF4444';
         
         snimiPogresnoPitanje(pitanje, korisnikovOdgovor);
