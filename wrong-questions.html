@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>错题库 - 知识测验</title>
+</head>
+<body>
+
+    <div id="wrapper">
+        <a href="index.html" class="back-link">⬅ 返回首页</a>
+        
+        <section>
+            <div class="wrong-questions-header">
+                <h2>📝 错题库</h2>
+                <p id="wrong-questions-count">共 0 道错题</p>
+            </div>
+
+            <div class="action-buttons">
+                <button id="practice-btn" onclick="pocniVezbu()">🔄 练习错题</button>
+                <button id="clear-btn" onclick="obrisiSveGreske()">🗑️ 清空错题</button>
+            </div>
+
+            <div id="wrong-questions-list" class="wrong-questions-container">
+                <div class="no-wrong-questions">
+                    <p>🎉 太棒了！</p>
+                    <p>目前没有错题记录</p>
+                </div>
+            </div>
+
+            <div id="practice-mode" class="practice-mode" style="display: none;">
+                <div class="practice-progress">
+                    <span id="practice-current">1</span> / <span id="practice-total">0</span>
+                </div>
+                <div id="practice-question" class="practice-question"></div>
+                <div id="practice-result" class="practice-result" style="display: none;"></div>
+                <div class="action-buttons" id="practice-buttons" style="display: none;">
+                    <button id="next-practice-btn" onclick="sledecePitanje()">下一题 ➜</button>
+                </div>
+            </div>
+        </section>
+
+        <footer onclick="footer()">
+            <p>作者：Goran Basic</p>
+        </footer>
+
+        <div class="overlay"></div>
+    </div>
+    
+    <div id="modal">
+        <h2 id="zatvoriModal" onclick="zatvori()" class="zatvori">X</h2>
+        <h2>关于作者</h2>
+        <p>我叫Goran Basic，19岁，是ITS - 高等信息技术职业学院的学生。</p>
+        <p>这个测验是出于个人好奇心和将在大学学到的知识应用于实践的愿望而创建的。</p>
+        <p>在项目开发过程中，我使用HTML、CSS和JavaScript研究了问题逻辑、评分和应用功能。</p>
+        <p>我的目标是通过独立工作进一步提高我的Web编程技能并测试我自己的想法。</p>
+    </div>
+
+    <script src="js/wrong-questions.js"></script>
+    <script src="js/modal.js"></script>
+</body>
+</html>

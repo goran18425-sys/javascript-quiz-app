@@ -11,24 +11,32 @@ toggle.addEventListener("click", () => {
     
 });
 
-oblast = (dugme) => {
-    let ispis = dugme.innerText;
-    let poslednje_slovo = ispis.substring(ispis.length - 1);
-    console.log(poslednje_slovo);
-    if(poslednje_slovo === 'a'){
-        ispis_final = ispis.substring(0, ispis.length-1);
-        nije_dodato.innerText = `Jos nije dodat kviz iz ${ispis_final}e`;
-
+izaberiKategoriju = (element, kategorija) => {
+    const dostupneKategorije = {
+        'istorija': '历史',
+        'geografija': '地理'
+    };
+    
+    if (dostupneKategorije[kategorija]) {
+        window.location.href = `oblasti/${kategorija}/${kategorija}.html`;
+    } else {
+        const kategorijaNazivi = {
+            'hemija': '化学',
+            'fizika': '物理',
+            'knjizevnost': '文学',
+            'biologija': '生物',
+            'sociologija': '社会学',
+            'informatika': '计算机',
+            'engleski': '英语'
+        };
+        
+        const naziv = kategorijaNazivi[kategorija] || kategorija;
+        nije_dodato.innerText = `${naziv}分类的测验即将推出！`;
+        
+        nije_dodato.style.animation = 'none';      
+        void nije_dodato.offsetWidth;   
+        nije_dodato.style.animation =  'shake 1s 1';
     }
-    if(ispis === 'Engleski'){
-        nije_dodato.innerText = `Jos nije dodat kviz iz Engleskog`;
-    }else if(ispis === 'Knjizevnost'){
-        nije_dodato.innerText = `Jos nije dodat kviz iz Knjizevnosti`;
-    }
-
-    nije_dodato.style.animation = 'none';      
-    void nije_dodato.offsetWidth;   
-    nije_dodato.style.animation =  'shake 1s 1';
 }
 
 const zatvoriSet = () => {
