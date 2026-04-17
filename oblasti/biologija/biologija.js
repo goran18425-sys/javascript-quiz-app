@@ -31,6 +31,38 @@ let tacan_odgovor = 0;
 const userValue = username.value;
 let moj_username = '';
 
+const pitanjaData = {
+    1: {
+        pitanje: '人体最大的器官是什么？',
+        opcije: ['A) 心脏', 'B) 肝脏', 'C) 皮肤', 'D) 大脑'],
+        tacanOdgovor: 'C) 皮肤',
+        objasnjenje: '皮肤是人体最大的器官，成年人的皮肤面积约为1.5-2平方米，重量约占体重的16%。皮肤具有保护、调节体温、感知外界刺激等多种功能。'
+    },
+    2: {
+        pitanje: '以下哪种血型被称为"万能供血者"？',
+        opcije: ['A) A型', 'B) B型', 'C) O型', 'D) AB型'],
+        tacanOdgovor: 'C) O型',
+        objasnjenje: 'O型血被称为"万能供血者"，因为O型血的红细胞表面没有A或B抗原，可以输给任何血型的人。而AB型血被称为"万能受血者"，可以接受任何血型的血液。'
+    },
+    3: {
+        pitanje: '光合作用主要发生在植物的哪个部位？',
+        opcije: ['A) 根部', 'B) 茎部', 'C) 叶片', 'D) 果实'],
+        tacanOdgovor: 'C) 叶片',
+        objasnjenje: '光合作用主要发生在植物的叶片中。叶片细胞含有大量的叶绿体，叶绿体中的叶绿素能够吸收光能，将二氧化碳和水转化为有机物（如葡萄糖）和氧气。'
+    },
+    4: {
+        pitanje: '以下哪种是遗传物质？',
+        opcije: ['A) 蛋白质', 'B) DNA', 'C) 脂肪', 'D) 碳水化合物'],
+        tacanOdgovor: 'B) DNA',
+        objasnjenje: 'DNA（脱氧核糖核酸）是生物的主要遗传物质，包含了生物体发育、生长和功能运作所需的遗传信息。DNA分子呈双螺旋结构，由核苷酸组成。'
+    },
+    5: {
+        pitanje: '人体消化食物的主要器官是什么？',
+        opcije: ['A) 胃', 'B) 小肠', 'C) 大肠', 'D) 肝脏'],
+        tacanOdgovor: 'B) 小肠',
+        objasnjenje: '小肠是人体消化食物和吸收营养物质的主要器官。小肠长度约5-6米，内壁有许多皱襞和绒毛，大大增加了吸收面积。食物在小肠中被彻底消化，营养物质被吸收进入血液。'
+    }
+};
 
 document.querySelectorAll('.klikabilno').forEach(el => {
     el.style.display = 'none';
@@ -74,38 +106,15 @@ pocni_kviz.onclick = () => {
 
 postaviPitanje = () => {
     pitanje++;
-    if(pitanje === 1){
-        naslov.innerText = `${pitanje}. 哪个国家是世界上面积最大的国家？`;
-        prvo_tekst.innerText ='A) 中国';
-        drugo_tekst.innerText = 'B) 加拿大';
-        trece_tekst.innerText = 'C) 俄罗斯';
-        cetvrto_tekst.innerText = 'D) 美国';
-
-    } else if(pitanje === 2){
-        naslov.innerText = `${pitanje}. 哪条河流是世界上最长的河流？`;
-        prvo_tekst.innerText = 'A) 尼罗河';
-        drugo_tekst.innerText = 'B) 亚马逊河';
-        trece_tekst.innerText = 'C) 密西西比河';
-        cetvrto_tekst.innerText = 'D) 长江';
-    } else if(pitanje === 3){
-        naslov.innerText = `${pitanje}. 哪座山峰是世界上最高的山峰？`;
-        prvo_tekst.innerText = 'A) K2';
-        drugo_tekst.innerText = 'B) 干城章嘉峰';
-        trece_tekst.innerText = 'C) 珠穆朗玛峰';
-        cetvrto_tekst.innerText = 'D) 洛子峰';
-    } else if(pitanje === 4){
-        naslov.innerText = `${pitanje}. 哪个大洋是世界上面积最大的大洋？`;
-        prvo_tekst.innerText = 'A) 大西洋';
-        drugo_tekst.innerText = 'B) 太平洋';
-        trece_tekst.innerText = 'C) 印度洋';
-        cetvrto_tekst.innerText = 'D) 北冰洋';
-    } else if(pitanje === 5){
-        naslov.innerText = `${pitanje}. 哪个国家是世界上人口最多的国家？`;
-        prvo_tekst.innerText = 'A) 印度';
-        drugo_tekst.innerText = 'B) 中国';
-        trece_tekst.innerText = 'C) 美国';
-        cetvrto_tekst.innerText = 'D) 印度尼西亚';
+    const data = pitanjaData[pitanje];
+    if (data) {
+        naslov.innerText = `${pitanje}. ${data.pitanje}`;
+        prvo_tekst.innerText = data.opcije[0];
+        drugo_tekst.innerText = data.opcije[1];
+        trece_tekst.innerText = data.opcije[2];
+        cetvrto_tekst.innerText = data.opcije[3];
     }
+    
     [prvo, drugo, trece, cetvrto].forEach(r => r.checked = false);
     document.querySelectorAll('.klikabilno').forEach(l => l.classList.remove('bold'));
     tacno_netacno.innerText = '';
@@ -137,9 +146,9 @@ getOpcije = (pitanje) => {
         ];
     } else if(pitanje === 2){
         return [
-            {el: prvo, tacno: true},
+            {el: prvo, tacno: false},
             {el: drugo, tacno: false},
-            {el: trece, tacno: false},
+            {el: trece, tacno: true},
             {el: cetvrto, tacno: false}
         ];
     } else if(pitanje === 3){
@@ -158,8 +167,8 @@ getOpcije = (pitanje) => {
         ];
     } else if(pitanje === 5){
         return [
-            {el: prvo, tacno: true},
-            {el: drugo, tacno: false},
+            {el: prvo, tacno: false},
+            {el: drugo, tacno: true},
             {el: trece, tacno: false},
             {el: cetvrto, tacno: false}
         ];
@@ -167,51 +176,24 @@ getOpcije = (pitanje) => {
 }
 
 const snimiPogresnoPitanje = (pitanjeBroj, korisnikovOdgovor) => {
-    const pitanjaData = {
-        1: {
-            pitanje: '哪个国家是世界上面积最大的国家？',
-            opcije: ['A) 中国', 'B) 加拿大', 'C) 俄罗斯', 'D) 美国'],
-            tacanOdgovor: 'C) 俄罗斯'
-        },
-        2: {
-            pitanje: '哪条河流是世界上最长的河流？',
-            opcije: ['A) 尼罗河', 'B) 亚马逊河', 'C) 密西西比河', 'D) 长江'],
-            tacanOdgovor: 'A) 尼罗河'
-        },
-        3: {
-            pitanje: '哪座山峰是世界上最高的山峰？',
-            opcije: ['A) K2', 'B) 干城章嘉峰', 'C) 珠穆朗玛峰', 'D) 洛子峰'],
-            tacanOdgovor: 'C) 珠穆朗玛峰'
-        },
-        4: {
-            pitanje: '哪个大洋是世界上面积最大的大洋？',
-            opcije: ['A) 大西洋', 'B) 太平洋', 'C) 印度洋', 'D) 北冰洋'],
-            tacanOdgovor: 'B) 太平洋'
-        },
-        5: {
-            pitanje: '哪个国家是世界上人口最多的国家？',
-            opcije: ['A) 印度', 'B) 中国', 'C) 美国', 'D) 印度尼西亚'],
-            tacanOdgovor: 'A) 印度'
-        }
-    };
-
     const data = pitanjaData[pitanjeBroj];
     if (!data) return;
 
     const pogresnoPitanje = {
-        id: `geografija_${pitanjeBroj}_${Date.now()}`,
-        kategorija: '地理',
+        id: `biologija_${pitanjeBroj}_${Date.now()}`,
+        kategorija: '生物',
         pitanje: data.pitanje,
         opcije: data.opcije,
         korisnikovOdgovor: korisnikovOdgovor,
         tacanOdgovor: data.tacanOdgovor,
+        objasnjenje: data.objasnjenje,
         vreme: new Date().toISOString()
     };
 
     let pogresnaPitanja = JSON.parse(localStorage.getItem('wrongQuestions') || '[]');
     
     const postojece = pogresnaPitanja.find(p => 
-        p.kategorija === '地理' && p.pitanje === data.pitanje
+        p.kategorija === '生物' && p.pitanje === data.pitanje
     );
     
     if (!postojece) {
@@ -234,9 +216,10 @@ proveri.onclick = () => {
     sledece.style.display = 'block';
 
     const korisnikovOdgovor = izabrana.el.nextElementSibling.innerText;
+    const data = pitanjaData[pitanje];
 
     if(izabrana.tacno){
-        tacno_netacno.innerText = `恭喜 ${moj_username}，回答正确！`;
+        tacno_netacno.innerHTML = `恭喜 ${moj_username}，回答正确！<br><span style="font-size: 0.9em; color: var(--tekst_muted);">${data.objasnjenje}</span>`;
         tacno_netacno.style.color = '#22C55E';
         bodovi += 10;
         
@@ -249,7 +232,7 @@ proveri.onclick = () => {
         wrapper.style.animation = 'tacanOdgovor 1s 1';
         tacan_odgovor ++;
     } else {
-        tacno_netacno.innerText = '回答错误！';
+        tacno_netacno.innerHTML = `回答错误！<br><span style="font-size: 0.9em; color: var(--tekst_muted);">${data.objasnjenje}</span>`;
         tacno_netacno.style.color = '#EF4444';
         
         snimiPogresnoPitanje(pitanje, korisnikovOdgovor);

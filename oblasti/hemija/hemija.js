@@ -31,6 +31,38 @@ let tacan_odgovor = 0;
 const userValue = username.value;
 let moj_username = '';
 
+const pitanjaData = {
+    1: {
+        pitanje: '水的化学式是什么？',
+        opcije: ['A) H₂O', 'B) CO₂', 'C) O₂', 'D) NaCl'],
+        tacanOdgovor: 'A) H₂O',
+        objasnjenje: '水的化学式是H₂O，表示一个水分子由2个氢原子和1个氧原子组成。CO₂是二氧化碳，O₂是氧气，NaCl是氯化钠（食盐）。'
+    },
+    2: {
+        pitanje: '以下哪种物质是金属？',
+        opcije: ['A) 硫', 'B) 铁', 'C) 碳', 'D) 磷'],
+        tacanOdgovor: 'B) 铁',
+        objasnjenje: '铁是一种金属元素，具有良好的导电性、导热性和延展性。硫、碳、磷都是非金属元素。'
+    },
+    3: {
+        pitanje: '以下哪个是化学变化？',
+        opcije: ['A) 冰融化成水', 'B) 酒精挥发', 'C) 铁生锈', 'D) 玻璃破碎'],
+        tacanOdgovor: 'C) 铁生锈',
+        objasnjenje: '化学变化是指产生新物质的变化。铁生锈时，铁与氧气和水反应生成了新物质——铁锈（氧化铁）。其他选项都是物理变化，没有产生新物质。'
+    },
+    4: {
+        pitanje: '氧气的化学式是什么？',
+        opcije: ['A) O', 'B) O₂', 'C) O₃', 'D) H₂O'],
+        tacanOdgovor: 'B) O₂',
+        objasnjenje: '氧气的化学式是O₂，表示一个氧气分子由2个氧原子组成。O是氧元素符号，O₃是臭氧，H₂O是水。'
+    },
+    5: {
+        pitanje: '以下哪种物质是酸？',
+        opcije: ['A) 氢氧化钠', 'B) 盐酸', 'C) 氯化钠', 'D) 氢氧化钙'],
+        tacanOdgovor: 'B) 盐酸',
+        objasnjenje: '盐酸（HCl）是一种强酸。氢氧化钠（NaOH）和氢氧化钙（Ca(OH)₂）是碱，氯化钠（NaCl）是盐。酸在水溶液中能解离出氢离子（H⁺）。'
+    }
+};
 
 document.querySelectorAll('.klikabilno').forEach(el => {
     el.style.display = 'none';
@@ -74,38 +106,15 @@ pocni_kviz.onclick = () => {
 
 postaviPitanje = () => {
     pitanje++;
-    if(pitanje === 1){
-        naslov.innerText = `${pitanje}. 哪个国家是世界上面积最大的国家？`;
-        prvo_tekst.innerText ='A) 中国';
-        drugo_tekst.innerText = 'B) 加拿大';
-        trece_tekst.innerText = 'C) 俄罗斯';
-        cetvrto_tekst.innerText = 'D) 美国';
-
-    } else if(pitanje === 2){
-        naslov.innerText = `${pitanje}. 哪条河流是世界上最长的河流？`;
-        prvo_tekst.innerText = 'A) 尼罗河';
-        drugo_tekst.innerText = 'B) 亚马逊河';
-        trece_tekst.innerText = 'C) 密西西比河';
-        cetvrto_tekst.innerText = 'D) 长江';
-    } else if(pitanje === 3){
-        naslov.innerText = `${pitanje}. 哪座山峰是世界上最高的山峰？`;
-        prvo_tekst.innerText = 'A) K2';
-        drugo_tekst.innerText = 'B) 干城章嘉峰';
-        trece_tekst.innerText = 'C) 珠穆朗玛峰';
-        cetvrto_tekst.innerText = 'D) 洛子峰';
-    } else if(pitanje === 4){
-        naslov.innerText = `${pitanje}. 哪个大洋是世界上面积最大的大洋？`;
-        prvo_tekst.innerText = 'A) 大西洋';
-        drugo_tekst.innerText = 'B) 太平洋';
-        trece_tekst.innerText = 'C) 印度洋';
-        cetvrto_tekst.innerText = 'D) 北冰洋';
-    } else if(pitanje === 5){
-        naslov.innerText = `${pitanje}. 哪个国家是世界上人口最多的国家？`;
-        prvo_tekst.innerText = 'A) 印度';
-        drugo_tekst.innerText = 'B) 中国';
-        trece_tekst.innerText = 'C) 美国';
-        cetvrto_tekst.innerText = 'D) 印度尼西亚';
+    const data = pitanjaData[pitanje];
+    if (data) {
+        naslov.innerText = `${pitanje}. ${data.pitanje}`;
+        prvo_tekst.innerText = data.opcije[0];
+        drugo_tekst.innerText = data.opcije[1];
+        trece_tekst.innerText = data.opcije[2];
+        cetvrto_tekst.innerText = data.opcije[3];
     }
+    
     [prvo, drugo, trece, cetvrto].forEach(r => r.checked = false);
     document.querySelectorAll('.klikabilno').forEach(l => l.classList.remove('bold'));
     tacno_netacno.innerText = '';
@@ -130,15 +139,15 @@ updateTimeline = (pitanje) => {
 getOpcije = (pitanje) => {
     if(pitanje === 1){
         return [
-            {el: prvo, tacno: false},
+            {el: prvo, tacno: true},
             {el: drugo, tacno: false},
-            {el: trece, tacno: true},
+            {el: trece, tacno: false},
             {el: cetvrto, tacno: false}
         ];
     } else if(pitanje === 2){
         return [
-            {el: prvo, tacno: true},
-            {el: drugo, tacno: false},
+            {el: prvo, tacno: false},
+            {el: drugo, tacno: true},
             {el: trece, tacno: false},
             {el: cetvrto, tacno: false}
         ];
@@ -158,8 +167,8 @@ getOpcije = (pitanje) => {
         ];
     } else if(pitanje === 5){
         return [
-            {el: prvo, tacno: true},
-            {el: drugo, tacno: false},
+            {el: prvo, tacno: false},
+            {el: drugo, tacno: true},
             {el: trece, tacno: false},
             {el: cetvrto, tacno: false}
         ];
@@ -167,51 +176,24 @@ getOpcije = (pitanje) => {
 }
 
 const snimiPogresnoPitanje = (pitanjeBroj, korisnikovOdgovor) => {
-    const pitanjaData = {
-        1: {
-            pitanje: '哪个国家是世界上面积最大的国家？',
-            opcije: ['A) 中国', 'B) 加拿大', 'C) 俄罗斯', 'D) 美国'],
-            tacanOdgovor: 'C) 俄罗斯'
-        },
-        2: {
-            pitanje: '哪条河流是世界上最长的河流？',
-            opcije: ['A) 尼罗河', 'B) 亚马逊河', 'C) 密西西比河', 'D) 长江'],
-            tacanOdgovor: 'A) 尼罗河'
-        },
-        3: {
-            pitanje: '哪座山峰是世界上最高的山峰？',
-            opcije: ['A) K2', 'B) 干城章嘉峰', 'C) 珠穆朗玛峰', 'D) 洛子峰'],
-            tacanOdgovor: 'C) 珠穆朗玛峰'
-        },
-        4: {
-            pitanje: '哪个大洋是世界上面积最大的大洋？',
-            opcije: ['A) 大西洋', 'B) 太平洋', 'C) 印度洋', 'D) 北冰洋'],
-            tacanOdgovor: 'B) 太平洋'
-        },
-        5: {
-            pitanje: '哪个国家是世界上人口最多的国家？',
-            opcije: ['A) 印度', 'B) 中国', 'C) 美国', 'D) 印度尼西亚'],
-            tacanOdgovor: 'A) 印度'
-        }
-    };
-
     const data = pitanjaData[pitanjeBroj];
     if (!data) return;
 
     const pogresnoPitanje = {
-        id: `geografija_${pitanjeBroj}_${Date.now()}`,
-        kategorija: '地理',
+        id: `hemija_${pitanjeBroj}_${Date.now()}`,
+        kategorija: '化学',
         pitanje: data.pitanje,
         opcije: data.opcije,
         korisnikovOdgovor: korisnikovOdgovor,
         tacanOdgovor: data.tacanOdgovor,
+        objasnjenje: data.objasnjenje,
         vreme: new Date().toISOString()
     };
 
     let pogresnaPitanja = JSON.parse(localStorage.getItem('wrongQuestions') || '[]');
     
     const postojece = pogresnaPitanja.find(p => 
-        p.kategorija === '地理' && p.pitanje === data.pitanje
+        p.kategorija === '化学' && p.pitanje === data.pitanje
     );
     
     if (!postojece) {
@@ -234,9 +216,10 @@ proveri.onclick = () => {
     sledece.style.display = 'block';
 
     const korisnikovOdgovor = izabrana.el.nextElementSibling.innerText;
+    const data = pitanjaData[pitanje];
 
     if(izabrana.tacno){
-        tacno_netacno.innerText = `恭喜 ${moj_username}，回答正确！`;
+        tacno_netacno.innerHTML = `恭喜 ${moj_username}，回答正确！<br><span style="font-size: 0.9em; color: var(--tekst_muted);">${data.objasnjenje}</span>`;
         tacno_netacno.style.color = '#22C55E';
         bodovi += 10;
         
@@ -249,7 +232,7 @@ proveri.onclick = () => {
         wrapper.style.animation = 'tacanOdgovor 1s 1';
         tacan_odgovor ++;
     } else {
-        tacno_netacno.innerText = '回答错误！';
+        tacno_netacno.innerHTML = `回答错误！<br><span style="font-size: 0.9em; color: var(--tekst_muted);">${data.objasnjenje}</span>`;
         tacno_netacno.style.color = '#EF4444';
         
         snimiPogresnoPitanje(pitanje, korisnikovOdgovor);
