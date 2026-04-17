@@ -287,8 +287,31 @@ button:active{
     text-align: center;
     margin: auto;
     min-height: 450px;
+    max-height: calc(90vh - 150px);
     transform: scale(0.98);
     transition: all 0.5s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+#pitanja > #naslov,
+#pitanja > .odgovori {
+    flex-shrink: 0;
+}
+
+#tacno_netacno {
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow-y: auto;
+    max-height: 180px;
+    margin: 10px 0;
+    padding: 10px;
+    line-height: 1.5;
+}
+
+#pitanja > .dugme_kviza,
+#pitanja > #timeline-container {
+    flex-shrink: 0;
 }
 
 #pitanja input[type="radio"] {
@@ -763,6 +786,13 @@ footer p:hover{
 
     #pitanja {
         width: 95%;
+        max-height: calc(96vh - 180px);
+        display: flex;
+        flex-direction: column;
+    }
+
+    #tacno_netacno {
+        max-height: 120px;
     }
 
     #igrac, #bodovi {
@@ -870,6 +900,17 @@ footer p:hover{
     #naslov {
         font-size: 1em;
         padding: 0 10px;
+    }
+
+    #pitanja {
+        max-height: calc(98vh - 200px);
+        display: flex;
+        flex-direction: column;
+    }
+
+    #tacno_netacno {
+        max-height: 100px;
+        font-size: 0.9em;
     }
 
     button {
